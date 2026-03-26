@@ -1,0 +1,183 @@
+targets:
+  # ═══════════════════════════════════════════════════════════════
+  # THE CONTROL — Validates the pipeline against known structure
+  # ═══════════════════════════════════════════════════════════════
+
+  - name: ivabradine_hcn4
+    category: control
+    drug:
+      name: Ivabradine
+      kind: smiles
+      value: "CN(CCCN1CCC2=CC(=C(C=C2CC1=O)OC)OC)CC3CC4=CC(=C(C=C34)OC)OC"
+      pubchem_cid: 132999
+    target:
+      name: HCN4
+      uniprot: Q9Y3Q4
+      # Using pore/transmembrane domain region (residues 260-590) for docking feasibility
+      # Full protein is 1203 aa — too large for efficient ligand docking on Colab
+      sequence: >-
+        KDENTTPWIVFNVVSDTFFLIDLVLNFRTGIVVEDNTEIILDPQRIKMKYLKSWFMVDFISSIPVDYIFL
+        IVETRIDSEVYKTARALRIVRFTKILSLLRLLRLSRLIRYIHQWEEIFHMTYDLASAVVRIVNLIGMMLL
+        LCHWDGCLQFLVPMLQDFPDDCWVSINNMVNNSWGKQYSYALFKAMSHMLCIGYGRQAPVGMSDVWLTM
+        LSMIVGATCYAMFIGHATALIQSLDSSRRQYQEKYKQVEQYMSFHKLPPDTRQRIHDYYEHRYQGKMFDE
+        ESILGELSEPLREEIINFNCRKLVASMPLFANADPNFVTSMLTKLRFEVFQPGDY
+      residue_range: "260-590"
+    reference_pdb: "8OFI"
+    rmsd_target: 2.0
+    biology: >-
+      Open-channel blocker of the HCN4 funny current (If). Reduces SA node firing rate,
+      lowering resting HR without affecting contractility. In endurance context: lower resting
+      HR → increased diastolic filling → greater stroke volume adaptation.
+
+  # ═══════════════════════════════════════════════════════════════
+  # FRONTIER SMALL MOLECULES
+  # ═══════════════════════════════════════════════════════════════
+
+  - name: cardarine_ppard
+    category: frontier_small_molecule
+    drug:
+      name: "Cardarine (GW501516)"
+      kind: smiles
+      value: "CC1=C(C=CC(=C1)SCC2=C(N=C(S2)C3=CC=C(C=C3)C(F)(F)F)C)OCC(=O)O"
+      pubchem_cid: 9803963
+    target:
+      name: "PPARdelta"
+      uniprot: Q03181
+      sequence: >-
+        MEQPQEEAPEVREEEEKEEVAEAEGAPELNGGPQHALPSSSYTDLSRSSSPPSLLDQLQMGCDGASCGSLN
+        MECRVCGDKASGFHYGVHACEGCKGFFRRTIRMKLEYEKCERSCKIQKKNRNKCQYCRFQKCLALGMSHN
+        AIRFGRMPEAEKRKLVAGLTANEGSQYNPQVADLKAFSKHIYNAYLKNFNMTKKKARSILTGKASHTAPFV
+        IHDIETLWQAEKGLVWKQLVNGLPPYKEISVHVFYRCQCTTVETVRELTEFAKSIPSFSSLFLNDQVTLLK
+        YGVHEAIFAMLASIVNKDGLLVANGSGFVTREFLRSLRKPFSDIIEPKFEFAVKFNALELDDSDLALFIAA
+        IILCGDRPGLMNVPRVEAIQDTILRALEFHLQANHPDAQYLFPKLLQKMADLRQLVTEHAQMMQRIKKTE
+        TETSLHPLLQEIYKDMY
+    reference_pdb: "3TKM"
+    rmsd_target: null  # apo structure only — compare fold, not ligand pose
+    biology: >-
+      PPARδ agonist that upregulates fatty acid oxidation genes, shifts muscle fiber type
+      toward slow-twitch (type I), and increases mitochondrial biogenesis via PGC-1α.
+      The classic experimental endurance compound — mice ran 70% longer on GW501516.
+
+  - name: itpp_hemoglobin
+    category: frontier_small_molecule
+    drug:
+      name: "ITPP (myo-inositol trispyrophosphate)"
+      kind: smiles
+      value: "C12C(C3C(C4C1OP(=O)(OP(=O)(O4)O)O)OP(=O)(OP(=O)(O3)O)O)OP(=O)(OP(=O)(O2)O)O"
+      pubchem_cid: 135503177
+    target:
+      name: "Hemoglobin (tetramer)"
+      uniprot: "P69905/P68871"
+      chains:
+        - name: HBA1
+          sequence: >-
+            MVLSPADKTNVKAAWGKVGAHAGEYGAEALERMFLSFPTTKTYFPHFDLSHGSAQVKGHGKKVADALT
+            NAVAHVDDMPNALSALSDLHAHKLRVDPVNFKLLSHCLLVTLAAHLPAEFTPAVHASLDKFLASVSTV
+            LTSKYR
+        - name: HBA2
+          sequence: >-
+            MVLSPADKTNVKAAWGKVGAHAGEYGAEALERMFLSFPTTKTYFPHFDLSHGSAQVKGHGKKVADALT
+            NAVAHVDDMPNALSALSDLHAHKLRVDPVNFKLLSHCLLVTLAAHLPAEFTPAVHASLDKFLASVSTV
+            LTSKYR
+        - name: HBB1
+          sequence: >-
+            MVHLTPEEKSAVTALWGKVNVDEVGGEALGRLLVVYPWTQRFFESFGDLSTPDAVMGNPKVKAHGKKV
+            LGAFSDGLAHLDNLKGTFATLSELHCDKLHVDPENFRLLGNVLVCVLAHHFGKEFTPPVQAAYQKVVA
+            GVANALAHKYH
+        - name: HBB2
+          sequence: >-
+            MVHLTPEEKSAVTALWGKVNVDEVGGEALGRLLVVYPWTQRFFESFGDLSTPDAVMGNPKVKAHGKKV
+            LGAFSDGLAHLDNLKGTFATLSELHCDKLHVDPENFRLLGNVLVCVLAHHFGKEFTPPVQAAYQKVVA
+            GVANALAHKYH
+    reference_pdb: "2DN1"
+    rmsd_target: null  # allosteric — check pocket location, not RMSD
+    biology: >-
+      ITPP binds allosterically to hemoglobin (outside the heme pocket), stabilizing the
+      T-state (tense) conformation to enhance oxygen release into tissues. Effectively
+      right-shifts the O2 dissociation curve. In endurance: more O2 delivered per
+      red blood cell pass → improved tissue oxygenation under load.
+
+  - name: roxadustat_phd2
+    category: frontier_small_molecule
+    drug:
+      name: "Roxadustat (FG-4592)"
+      kind: smiles
+      value: "CC1=C2C=C(C=CC2=C(C(=N1)C(=O)NCC(=O)O)O)OC3=CC=CC=C3"
+      pubchem_cid: 9880809
+    target:
+      name: "PHD2 (EGLN1)"
+      uniprot: Q9GZT9
+      sequence: >-
+        MANDSGGPGGPSPSERDRQYCELCGKMENLLRCSRCRSSFYCCKEHQRQDWKKHKLVCQGSEGALGHGVG
+        PHQHSGPAPPAAVPPPRAGAREPRKAAARRDNASGDAAKGKVKAKPPADPAAAASPCRAAAGGQGSAVAAE
+        AEPGKEEPPARSSLFQEKANLYPPSNTPGDALSPGGGLRPNGQTKPLPALKLALEYIVPCMNKHGICVVDD
+        FLGKETGQQIGDEVRALHDTGKFTDGQLVSQKSDSSKDIRGDKITWIEGKEPGCETIGLLMSSMDDLIRH
+        CNGKLGSYKINGRTKAMVACYPGNGTGYVRHVDNPNGDGRCVTCIYYLNKDWDAKVSGGILRIFPEGKAQ
+        FADIEPKFDRLLFFWSDRRNPHEVQPAYATRYAITVWYFDADERARAKVKYLTGEKGVRVELNKPSDSVGK
+        DVF
+    reference_pdb: "5OX5"
+    rmsd_target: 2.0
+    biology: >-
+      Competitive inhibitor of prolyl hydroxylase domain 2 (PHD2/EGLN1). Blocks the
+      oxygen-sensing enzyme that degrades HIF-1α, mimicking hypoxia at sea level. Stabilized
+      HIF-1α drives EPO transcription, VEGF expression, and glycolytic enzyme upregulation.
+      FDA-approved for anemia — effectively oral altitude training in a pill.
+
+  # ═══════════════════════════════════════════════════════════════
+  # FRONTIER PEPTIDES — The hardest predictions
+  # ═══════════════════════════════════════════════════════════════
+
+  - name: bpc157_vegfr2
+    category: frontier_peptide
+    drug:
+      name: "BPC-157"
+      kind: peptide_sequence
+      value: "GEPPPGKPADDAGLV"
+    target:
+      name: "VEGFR2 (extracellular domain)"
+      uniprot: P35968
+      # Using extracellular domain only (residues 20-764) — full 1356aa too large
+      sequence: >-
+        SVGLPSVSLDLPRLSIQKDILTIKANTTLQITCRGQRDLDWLWPNNQSGSEQRVEVTECSDGLFCKTLTI
+        PKVIGNDTGAYKCFYRETDLASVIYVYVQDYRSPFIASVSDQHGVVYITENKNKTVVIPCLGSISNLNVS
+        LCARYPEKRFVPDGNRISWDSKKGFTIPSYMISYAGMVFCEAKINDESYQSIMYIVVVVGYRIYDVVLSPS
+        HGIELSVGEKLVLNCTARTELNVGIDFNWEYPSSKHQHKKLVNRDLKTQSGSEMKKFLSTLTIDGVTRSDQ
+        GLYTCAASSGLMTKKNSTFVRVHEKPFVAFGSGMESLVEATVGERVRIPAKYLGYPPPEIKWYKNGIPLES
+        NHTIKAGHVLTIMEVSERDTGNYTVILTNPISKEKQSHVVSLVVYVPPQIGEKSLISPVDSYQYGTTQTLT
+        CTVYAIPPPHHIHWYWQLEEECANEPSQAVSVTNPYPCEEWRSVEDFQGGNKIEVNKNQFALIEGKNKTVS
+        TLVIQAANVSALYKCEAVNKVGRGERVISFHVTRGPEITLQPDMQPTEQESVSLWCTADRSTFENLTWYKL
+        GPQPLPIHVGELPTPVCKNLDTLWKLNATMFSNSTNDILIMELKNASLQDQGDYVCLAQDRKTKKRHCVVR
+        QLTVLERVAPTITGNLENQTTSIGESIEVSCTASGNPPPQIMWFKDNETLVEDSGIVLKDGNRNLTIRRV
+        RKEDEGLYTCQACSVLGCAKVEAFFIIEGAQEKTNLEIIIL
+      residue_range: "20-764"
+    reference_pdb: null
+    rmsd_target: null  # no known co-crystal — this IS the novel prediction
+    biology: >-
+      BPC-157 is a 15-amino-acid peptide derived from gastric juice. Proposed to activate
+      VEGFR2 via the Akt-eNOS axis, promoting angiogenesis and tissue repair. Highly flexible
+      peptide docking into a massive extracellular receptor — pushes Chai-1 to its limits.
+      For athletes: accelerated tendon/ligament repair and neovascularization.
+
+  - name: tb500_actin
+    category: frontier_peptide
+    drug:
+      name: "TB-500 (Thymosin Beta-4 fragment)"
+      kind: peptide_sequence
+      value: "LKKTETQ"
+    target:
+      name: "Beta-actin (ACTB)"
+      uniprot: P60709
+      sequence: >-
+        MDDDIAALVVDNGSGMCKAGFAGDDAPRAVFPSIVGRPRHQGVMVGMGQKDSYVGDEAQSKRGILTLKY
+        PIEHGIVTNWDDMEKIWHHTFYNELRVAPEEHPVLLTEAPLNPKANREKMTQIMFETFNTPAMYVAIQAVL
+        SLYASGRTTGIVMDSGDGVTHTVPIYEGYALPHAILRLDLAGRDLTDYLMKILTERGYSFTTTAEREIVRD
+        IKEKLCYVALDFEQEMATAASSSSLEKSYELPDGQVITIGNERFRCPEALFQPSFLGMESCGIHETTFNSI
+        MKCDVDIRKDLYANTVLSGGTTMYPGIADRMQKEITALAPSTMKIKIIAPPERKYSVWIGGSILASLSTFQ
+        QMWISKQEYDESGPSIVHRKCF
+    reference_pdb: "4PL7"
+    rmsd_target: 2.5  # peptide-protein is harder, slightly relaxed threshold
+    biology: >-
+      TB-500 is the active heptapeptide fragment of Thymosin Beta-4. It sequesters G-actin
+      monomers, preventing premature polymerization while maintaining a ready pool for
+      cytoskeletal remodeling. For athletes: accelerates muscle fiber regeneration, promotes
+      endothelial cell migration, and reduces inflammation post-exercise.

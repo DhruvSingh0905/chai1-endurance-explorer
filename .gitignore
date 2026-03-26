@@ -1,0 +1,28 @@
+# Chai-1 inference outputs (large, regenerable via colab/fold.ipynb)
+results/**/*.cif
+results/**/*.npz
+results/**/*.pdb
+results/**/*.pqt
+results/**/*.pdf
+results/**/msas/
+results/summary.csv
+
+# Keep the result directory structure
+!results/**/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+*.egg-info/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Colab uploads
+*.zip

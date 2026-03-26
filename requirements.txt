@@ -1,0 +1,12 @@
+# Local dependencies (Mac — no GPU needed)
+pyyaml>=6.0
+biopython>=1.81
+pandas>=2.0
+matplotlib>=3.7
+py3Dmol>=2.0
+numpy>=1.24
+pytest>=7.0
+
+# Optional: SMILES validation (test_targets.py)
+# rdkit is installed via: pip install rdkit-pypi
+# rdkit-pypi>=2023.3.1
