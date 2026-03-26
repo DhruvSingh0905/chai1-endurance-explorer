@@ -16,6 +16,14 @@ targets.yaml → prepare.py → FASTA files → Chai-1 (Colab, A100) → CIF str
 
 Single YAML config defines all 6 pairs (SMILES, sequences, UniProt IDs, reference PDBs). One command generates Chai-1-compatible FASTA files. Inference runs on Google Colab with MSA server enabled. Analysis scores each prediction and validates against known structures where available.
 
+## Interactive 3D Models
+
+Every prediction is viewable as an interactive 3D structure — rotate, zoom, inspect. No install needed.
+
+**[Browse all 6 models on GitHub Pages →](https://dhruvsingh0905.github.io/endurance-pharma-explorer/)**
+
+For the full analysis with per-residue confidence heatmaps and binding pocket detail, run `notebooks/explorer.ipynb` locally after cloning.
+
 ## The Roster
 
 ### Control
@@ -30,13 +38,13 @@ Single YAML config defines all 6 pairs (SMILES, sequences, UniProt IDs, referenc
 
 ITPP binds allosterically to the hemoglobin tetramer, stabilizing the T-state to right-shift the O2 dissociation curve. Chai-1 folds the tetramer near-perfectly and places the ligand with the highest binding confidence of any target.
 
-**[View 3D Model →](docs/models/itpp_hemoglobin.html)**
+**[View 3D Model →](https://dhruvsingh0905.github.io/endurance-pharma-explorer/models/itpp_hemoglobin.html)**
 
 **Cardarine (GW501516) → PPARδ** | ipTM: **0.744** | Ligand pLDDT: 88.5
 
 PPARδ agonist that upregulates fatty acid oxidation and drives mitochondrial biogenesis via PGC-1α. Ligand pLDDT of 88.5 — the model places Cardarine in the ligand-binding domain with exceptional confidence.
 
-**[View 3D Model →](docs/models/cardarine_ppard.html)**
+**[View 3D Model →](https://dhruvsingh0905.github.io/endurance-pharma-explorer/models/cardarine_ppard.html)**
 
 ### Tier 2 — Solid
 
@@ -44,7 +52,7 @@ PPARδ agonist that upregulates fatty acid oxidation and drives mitochondrial bi
 
 Competitive inhibitor of prolyl hydroxylase PHD2. Blocks the oxygen sensor that degrades HIF-1α, mimicking hypoxia at sea level — oral altitude training. Most consistent binding pose of any target (16.9A spread across 5 models).
 
-**[View 3D Model →](docs/models/roxadustat_phd2.html)**
+**[View 3D Model →](https://dhruvsingh0905.github.io/endurance-pharma-explorer/models/roxadustat_phd2.html)**
 
 ### Tier 3 — The Frontier
 
@@ -54,19 +62,19 @@ These are where it gets interesting.
 
 Protein fold is excellent. Ligand placement is random — 42A spread across 5 models. **Why:** Ivabradine is an open-channel blocker. The binding site only exists when the HCN4 pore is in the open conformation. Static structure prediction can't capture conformational gating.
 
-**[View 3D Model →](docs/models/ivabradine_hcn4.html)**
+**[View 3D Model →](https://dhruvsingh0905.github.io/endurance-pharma-explorer/models/ivabradine_hcn4.html)**
 
 **TB-500 → G-Actin** | ipTM: 0.172 | Protein pTM: **0.921**
 
 Actin fold is the best of any target (pTM 0.92). But the 7-residue peptide lands in a different spot every time (52A spread). **Why:** A heptapeptide has too many degrees of freedom and too few intramolecular contacts for the model to anchor. The interaction surface is shallow.
 
-**[View 3D Model →](docs/models/tb500_actin.html)**
+**[View 3D Model →](https://dhruvsingh0905.github.io/endurance-pharma-explorer/models/tb500_actin.html)**
 
 **BPC-157 → VEGFR2** | ipTM: 0.114 | Spread: 62.7A
 
 15-residue peptide docking into a 745-residue extracellular domain. No known co-crystal structure — genuinely novel prediction. Largest protein + most flexible drug + no structural prior = maximum uncertainty. This is exactly the class of problem Chai Discovery is working to solve.
 
-**[View 3D Model →](docs/models/bpc157_vegfr2.html)**
+**[View 3D Model →](https://dhruvsingh0905.github.io/endurance-pharma-explorer/models/bpc157_vegfr2.html)**
 
 ## What This Tells Us About Chai-1
 
