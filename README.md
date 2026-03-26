@@ -4,7 +4,7 @@ Predicting how endurance-relevant drugs bind their protein targets using [Chai-1
 
 ## Why I Built This
 
-I'm a competitive triathlete who studies molecular biology to understand what drives endurance performance. I wanted to see what Chai-1 could tell me about the compounds that alter aerobic capacity at the protein level — and where the model hits its limits.
+I'm an amateur triathlete who studies molecular biology to understand what drives endurance performance. I wanted to see what Chai-1 could tell me about the compounds that alter aerobic capacity at the protein level — and where the model hits its limits.
 
 This project runs 6 drug-target predictions through Chai-1: 1 control with a known crystal structure, 3 frontier small molecules, and 2 peptide-protein interactions that push the model into genuinely difficult territory.
 
